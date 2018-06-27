@@ -42,16 +42,12 @@ class EditorConnection(object):
                 c(payload)
 
     def _on_error(self, ws, error):
-        # print("### error ###")
-        # print(error)
-
-    def _on_close(self, ws):
-        # print(ws)
-        print("### closed optic connection ###")
-
+        print(error)
     def _on_open(self, ws):
-        print(ws)
         print("### opened optic connection ###")
+
+    def _on_close(self, ws): 
+        print("### closed optic connection ###")
 
     def connect(self):
         self.ws = websocket.WebSocketApp("ws://localhost:30333/socket/editor/" + self.name, on_message=self._on_message,

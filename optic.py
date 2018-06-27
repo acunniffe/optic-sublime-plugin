@@ -9,7 +9,7 @@ from subprocess import Popen
 import sublime, sublime_plugin
 from . import optic_editor_sdk
 
-
+os.system("open /Applications/Optic.app")
 editor_conn = optic_editor_sdk.EditorConnection("sublime_text")
 
 class Optic(sublime_plugin.ViewEventListener):
@@ -38,10 +38,7 @@ class Optic(sublime_plugin.ViewEventListener):
   def on_selection_modified(obj):
     view = obj.view
     file_content = view.substr(sublime.Region(0, view.size()))
-
     payload = {"file": view.file_name(), "start": view.sel()[0].begin(), "end": view.sel()[0].end(), "contents": file_content}
-    
-    # print(payload)
     editor_conn.context(**payload)
 
 def focus_view(v):
